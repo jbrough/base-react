@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "NODE_ENV=development node --use_strict server/server",
+    "start": "npm run build; NODE_ENV=development node --use_strict server/server",
     "test": "tape -r babel-register test/server/**/*.js test/client/**/*.jsx",
     "lint": "eslint server test || true",
-    "gulp": "rm -rf dist; gulp"
+    "build": "rm -rf dist; gulp"
   },
   "author": "Jamie Brough <jamie1612@gmail.com>",
   "license": "ISC",

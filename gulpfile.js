@@ -1,7 +1,7 @@
-const gulp = reqclientre('gulp');
-const babel = reqclientre('gulp-babel');
-const browserify = reqclientre('browserify');
-const source = reqclientre('vinyl-source-stream');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
 
 const paths = {
   html: ['./client/html/**/*.html'],

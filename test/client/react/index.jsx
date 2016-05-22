@@ -1,7 +1,7 @@
 import test from 'tape';
 import React from 'react';
 import sd from 'skin-deep';
-import Index from '../../../client/js/react/index.jsx';
+import Index from '../../../client/src/js/react/index.jsx';
 import FakeAgent from '../../fakes/agent'
 
 function fakeAgent() {

@@ -18,7 +18,7 @@ module.exports = (logger, config, apis) => {
   }));
   app.use(bodyParser.json());
 
-  app.use(express.static('./dist/public/client'));
+  app.use(express.static('./dist'));
 
   app.get('/up', (req, res) => res.send('OK'));
   app.get('/version', routes.version);

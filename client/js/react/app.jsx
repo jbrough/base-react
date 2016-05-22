@@ -10,7 +10,7 @@ export default class App extends React.Component {
   render() {
     return(
       <section className='app'>
-        <Index get={ this.props.get } />
+        <Index agent={ this.props.agent } />
       </section>
     );
   }

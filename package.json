@@ -27,7 +27,6 @@
     "express-request-id": "^1.1.0",
     "js-yaml": "^3.6.1",
     "react": "^15.1.0",
-    "react-addons-update": "^15.1.0",
     "react-dom": "^15.1.0",
     "socket.io": "^1.4.6",
     "socket.io-client": "^1.4.6",

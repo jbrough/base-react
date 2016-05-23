@@ -7,9 +7,9 @@
     "start": "NODE_ENV=development node --use_strict server/server",
     "test": "tape -r babel-register test/server/**/*.js test/client/**/*.jsx",
     "lint": "eslint server test || true",
-    "build": "rm -rf dist && mkdir dist && npm run _mv_static && npm run _browserify",
-    "_mv_static": "cp -rf client/static/* dist/",
-    "_browserify": "browserify --extension=.jsx client/src/js/index.js -o dist/index.js -t [ babelify ]"
+    "build": "rm -rf dist && mkdir -p dist/js && npm run _mv_static && npm run _browserify",
+    "_mv_static": "cp -rf client/static/css client/static/img client/static/html/* dist/",
+    "_browserify": "browserify --extension=.jsx client/src/js/index.js -o dist/js/bundle.js -t [ babelify ]"
   },
   "author": "Jamie Brough <jamie1612@gmail.com>",
   "license": "ISC",
@@ -29,6 +29,8 @@
     "react": "^15.1.0",
     "react-addons-update": "^15.1.0",
     "react-dom": "^15.1.0",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6",
     "superagent": "^2.0.0-alpha.3"
   },
   "devDependencies": {

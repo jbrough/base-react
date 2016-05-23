@@ -8,8 +8,8 @@ test('/version returns version', t => {
     .expect('Content-Type', /json/)
     .expect(200)
     .end((err, res) => {
-      t.notOk(err);
-      t.equal(res.body.version, '1.0.0');
+      t.notOk(err, 'does not return error');
+      t.equal(parseInt(res.body.version), 1, 'has version from package.json');
       t.end();
     });
 });
@@ -20,8 +20,8 @@ test('/status has green status', t => {
    .expect('Content-Type', /json/)
    .expect(200)
    .end((err, res) => {
-     t.notOk(err);
-     t.equal(res.body.status, 'green');
+     t.notOk(err, 'does not return error');
+     t.equal(res.body.status, 'green', 'has green status');
      t.end();
    });
 });

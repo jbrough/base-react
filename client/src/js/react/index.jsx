@@ -1,16 +1,62 @@
+import io from 'socket.io-client';
 import React from 'react';
-import ReactDOM from 'react-dom';
+
+import Events from './events';
 
 export default class Index extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       status: null,
+      socket: null,
+      subscribed: false,
+      events: [],
+
     };
   }
 
   componentDidMount() {
     this._getStatus();
+  }
+
+  _connectSocket(cb) {
+    this.setState({
+      socket: this.props.io.connect('http://localhost:8080'),
+    }, cb);
+  }
+
+  _handleSubscribe(e) {
+    const checked = e.target.checked;
+    this.setState({
+      subscribed: checked
+    }, () => {
+      checked ? this._subscribe() : this._unsubscribe();
+    });
+  }
+
+  _isSubscribed() {
+    return this.state.subscribed;
+  }
+
+  _subscribe() {
+    const subscribe = () => this.state.socket.on('events', this._listner.bind(this));
+
+    if (!this.state.socket) {
+      this._connectSocket( () => { subscribe() })
+    } else {
+      subscribe()
+    }
+  }
+
+  _unsubscribe() {
+    this.state.socket.removeAllListeners('events');
+  }
+
+  _listner(data) {
+    const events = this.state.events.concat([]);
+    events.push(data);
+    this.setState({ events: events });
   }
 
   _error() {
@@ -35,6 +81,11 @@ export default class Index extends React.Component {
     return(
       <section className='index'>
         <p>status: {this.state.status}</p>
+        <input  type='checkbox'
+                checked={ this._isSubscribed() }
+                onChange={ this._handleSubscribe.bind(this) }
+        />
+        <Events events={ this.state.events } />
       </section>
     );
   }

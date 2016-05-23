@@ -12,7 +12,6 @@ export default class Index extends React.Component {
       socket: null,
       subscribed: false,
       events: [],
-
     };
   }
 
@@ -81,10 +80,13 @@ export default class Index extends React.Component {
     return(
       <section className='index'>
         <p>status: {this.state.status}</p>
-        <input  type='checkbox'
-                checked={ this._isSubscribed() }
-                onChange={ this._handleSubscribe.bind(this) }
-        />
+        <p>
+          Listen for messages
+          <input  type='checkbox'
+                  checked={ this._isSubscribed() }
+                  onChange={ this._handleSubscribe.bind(this) }
+          />
+        </p>
         <Events events={ this.state.events } />
       </section>
     );

@@ -9,18 +9,10 @@ export default class FlexFilter extends React.Component {
     };
   }
 
-  _changeHandler(evt) {
-    const newState = { value: evt.target.value };
-    const state = update(this.state, { $merge: newState });
-    this.setState(state, () => {
-      this.props.handler('flex', this.state.value);
-    });
-  }
-
   _flexibility() {
     return(
       <select defaultValue={ this.state.value }
-              onChange={ this._changeHandler.bind(this) }
+              onChange={ this.props.handler(this, 'flex') }
       >
 
         <option value="30">+/- 30 mins</option>

@@ -9,20 +9,13 @@ export default class DateFilter extends React.Component {
     };
   }
 
-  _changeHandler(evt) {
-    const newState = { value: evt.target.value };
-    const state = update(this.state, { $merge: newState });
-    this.setState(state, () => {
-      this.props.handler('date', this.state.value);
-    });
-  }
-
   render() {
     return(
       <span>
-        <input type='date'
+        <input className='filter-date'
+               type='date'
                defaultValue={ this.state.value }
-               onChange={ this._changeHandler.bind(this) }
+               onChange={ this.props.handler(this, 'date') }
         />
       </span>
     )

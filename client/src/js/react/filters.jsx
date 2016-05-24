@@ -26,6 +26,18 @@ export default class Filters extends React.Component {
     });
   }
 
+  _filterChangeHandler(self, type) {
+    const filters = this;
+    return (evt) => {
+      const newState = { value: evt.target.value };
+      const state = update(self.state, { $merge: newState });
+      self.setState(state, () => {
+        filters.changeHandler(type, self.state.value);
+      });
+    }
+  }
+
+
   _queryEvents() {
     console.log(params(this.state.date, this.state.time, this.state.flex).params);
   }
@@ -34,13 +46,13 @@ export default class Filters extends React.Component {
     return(
       <div>
         <DateFilter defaultValue={ this.state.date }
-                    handler={ this.changeHandler.bind(this) }
+                    handler={ this._filterChangeHandler.bind(this) }
         />
         <TimeFilter defaultValue={ this.state.time }
-                    handler={ this.changeHandler.bind(this) }
+                    handler={ this._filterChangeHandler.bind(this) }
         />
         <FlexFilter defaultValue={ this.state.flex }
-                    handler={ this.changeHandler.bind(this) }
+                    handler={ this._filterChangeHandler.bind(this) }
         />
         <Description date={ this.state.date }
                      time={ this.state.time }

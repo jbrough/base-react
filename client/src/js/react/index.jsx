@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import React from 'react';
 
 import Events from './events';
+import Filters from './filters';
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -79,6 +80,7 @@ export default class Index extends React.Component {
   render() {
     return(
       <section className='index'>
+        <Filters />
         <p>status: {this.state.status}</p>
         <p>
           Listen for messages

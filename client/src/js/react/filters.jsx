@@ -5,6 +5,7 @@ import DateFilter from './filters/date';
 import TimeFilter from './filters/time';
 import FlexFilter from './filters/flex';
 import Description from './filters/description';
+import params from './../lib/filters';
 
 export default class Filters extends React.Component {
   constructor(props) {
@@ -20,7 +21,13 @@ export default class Filters extends React.Component {
     const filter = {};
     filter[key] = val;
     const state = update(this.state, { $merge: filter });
-    this.setState(state);
+    this.setState(state, () => {
+      this._queryEvents();
+    });
+  }
+
+  _queryEvents() {
+    console.log(params(this.state.date, this.state.time, this.state.flex).params);
   }
 
   render() {

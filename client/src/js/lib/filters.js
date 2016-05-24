@@ -18,5 +18,8 @@ export default function(date, time, flex) {
     b = moment(dateTime.format()).add(mins, "minutes");
   }
 
-  return `${a.format('h:mm A')} - ${b.format('h:mm A')}`;
+  return {
+    params: { start: a.format(), end: b.format() },
+    text: `${a.format('h:mm A')} - ${b.format('h:mm A')}`,
+  };
 }
